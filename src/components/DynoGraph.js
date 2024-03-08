@@ -71,7 +71,7 @@ const DynoGraph = () => {
   }
 
   useEffect(() => {
-    const selector = document.getElementById('selectDyno')
+    const selector = document.getElementById('dyno-select')
     selector.childNodes.forEach(button => {
       if (button.value === dyno) button.className = button.value + ' selected'
       else button.className = button.value    
@@ -83,54 +83,52 @@ const DynoGraph = () => {
       labels,
       datasets: [{
           data: dynoData[dyno],
-          backgroundColor: '#ED45A7',
+          backgroundColor: '#3b9d5c',
       }]
   };
 
   const dynoOptions = {
     scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-          suggestedMax: 10
-        },
-        gridLines: {
+      y: {
+        beginAtZero: true,
+        suggestedMax: 10,
+        grid: {
           color: "#969696"
         }
-      }]
+      }
+    },
+    plugins: {
+      legend: {
+        display: false
+      }
     },
     responsive: true,
-    maintainAspectRatio: false,
-    legend: {
-      display: false   
-    }
+    maintainAspectRatio: false
   };
 
   return (
-    <div className='dynoParent'>
-      <div id='selectDyno'>
-        <button value='acousticness' onClick={() => setDyno('acousticness')}>Acousticness</button>
-        <button value='danceability' onClick={() => setDyno('danceability')}>Danceability</button>
-        <button value='energy' onClick={() => setDyno('energy')}>Energy</button>
-        <button value='instrumentalness' onClick={() => setDyno('instrumentalness')}>Instrumentalness</button>
-        <button value='liveness' onClick={() => setDyno('liveness')}>Liveness</button>
-        <button value='speechiness' onClick={() => setDyno('speechiness')}>Speechiness</button>
-        <button value='valence' onClick={() => setDyno('valence')}>Valence</button>
-        <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
-      </div>
-      <div className="centerDyno">
-        <div className='dynoGraph'>
-          <Bar 
-            data={currentData}
-            options={dynoOptions}
-            // height={400}
-            // width={700}
-          />
+    <div className='flex-container dyno-container'>
+      <div className='flex-item'>
+        <div id='dyno-select'>
+          <button value='acousticness' onClick={() => setDyno('acousticness')}>Acousticness</button>
+          <button value='danceability' onClick={() => setDyno('danceability')}>Danceability</button>
+          <button value='energy' onClick={() => setDyno('energy')}>Energy</button>
+          <button value='instrumentalness' onClick={() => setDyno('instrumentalness')}>Instrumentalness</button>
+          <button value='liveness' onClick={() => setDyno('liveness')}>Liveness</button>
+          <button value='speechiness' onClick={() => setDyno('speechiness')}>Speechiness</button>
+          <button value='valence' onClick={() => setDyno('valence')}>Valence</button>
+          <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
         </div>
-        <div className='dynoText'>
+        <div className='dyno-text'>
           <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>
           <p className='descriptions'> {dynoDescriptions(dyno)}</p>
         </div>
+      </div>
+      <div className='flex-item-long'>
+        <Bar 
+          data={currentData}
+          options={dynoOptions}
+        />
       </div>
     </div>
   )

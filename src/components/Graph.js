@@ -174,21 +174,25 @@ const Graph = () => {
     maintainAspectRatio: true
   };
   
-
+    // crazy bullshit goo go go gooo
   
   return (
-    <div className='graph-container'>
-      <div className="key-chart">
+    <div className='flex-container'>
+      <div className="flex-item">
         <p className="common-data">Most Common Key: {favKey.map((x, i) => i === favKey.length - 1 ? x : x + ' & ')}</p>
+        
         <Doughnut
           data={keyData}
           options={keyOptions}
           height={400}
           width={420}
         />
-        <p className='keysig'>♯/♭</p>
+        <div className='keysig'>
+            ♯/♭
+        </div>
+
       </div>
-      <div className='mode-chart'>
+      <div className='flex-item'>
         <p className='common-data'>{faveMode}</p>
         <Bar
           height={400}
@@ -197,7 +201,7 @@ const Graph = () => {
           options={modeOptions}
           />
       </div>
-      <div className='tempo-chart'>
+      <div className='flex-item'>
         <p className='common-data'>Average Tempo: {favTempo} bpm ({speed})</p>
         <Bar
           height={400}

@@ -12,13 +12,13 @@ const Navbar = () => {
 
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('light-mode');
   };
   
 
   return (
     <div className='navbar'>
-      <h1>Spotify mapped</h1>
+      <header>Spotify <span className='mapped'>mapped</span></header>
 
       {session.isAuthenticated &&
         <div className='navbar-drop-btn' onClick={() => setDropdown(state => !state)}>
@@ -33,7 +33,7 @@ const Navbar = () => {
           <div className="dropdown-item">
             
           <button onClick={toggleTheme}>
-            {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            {!isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           </button>
           </div>
           <div className="dropdown-item" onClick={() => { dispatch(logout()); setDropdown(false); window.location.href='/' }}>Logout</div>

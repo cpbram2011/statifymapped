@@ -5,9 +5,7 @@ const SingleTrack = ({datum}) => {
     if (!datum){
         return null
     }
-    console.log('datummmm', datum)
     if(datum.type === 'episode'){
-        
         return (
             <h1 className="episode">
                 Sorry, this is not a song...
@@ -21,8 +19,7 @@ const SingleTrack = ({datum}) => {
     }
     const keyArr = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B',];
     const modes = ['Maj', 'Min']
-    // const albumArtUrl = datum.album.images[0].url
-    const albumArtUrl = ''
+    const albumArtUrl = datum.album.images[0].url
     
     const trackData = [datum.popularity / 10, 
         datum.liveness * 10, 
@@ -41,27 +38,36 @@ const SingleTrack = ({datum}) => {
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
                 
-             
             },
         ],
     }
 
     const options = {
-      scales: {
+        scales: {
         r: {
-          ticks: { beginAtZero: true, stepSize: 1 },
-          pointLabels: { fontSize: 20, fontColor: 'white' },
-          grid: {
+            ticks: { beginAtZero: true, stepSize: 1 },
+            pointLabels: { fontSize: 20, fontColor: 'white' },
+            grid: {
             color: 'rgba(250, 250, 250, .6)',
             lineWidth: 2,
             borderColor: 'rgba(250, 250, 250, .6)',
             drawBorder: true,
             drawOnChartArea: true,
             drawTicks: true
-          },
-          angleLines: { color: 'rgba(250, 250, 250, .6)' }
+        },
+        angleLines: { color: 'rgba(250, 250, 250, .6)' }
+        },
+    },
+    plugins: {
+        legend: {
+            display: false
+        },
+        title: {
+            display: false
         }
-      }
+    },
+    responsive: true,
+    maintainAspectRatio: false
     };
     
     const openInNewTab = (url) => {
@@ -69,40 +75,25 @@ const SingleTrack = ({datum}) => {
         if (newWindow) newWindow.opener = null
     }
     return (
-        <div className="dynoTrack-container">
-            <div className="album-info">
-                
-                <div className="album-art-div" onClick={() => openInNewTab(datum.external_urls.spotify)}>
-                    <img src={albumArtUrl} alt="album" className="dyno-albumart"/>
-                    <p className="album-name-sm"><b>{datum.album.name}</b> 
-                    <br/>
-                    by {datum.artists[0].name}
-                    </p>
-                   
+        <>
+            <div className="track-details">
+                <img src={albumArtUrl} alt="album" className="track-details-img"/>
+                <div className='track-details-text-container'>
+                    <h2 className='track-details-title' onClick={() => openInNewTab(datum.external_urls.spotify)}>{datum.name}</h2>
+                    <span className='track-details-album'> {datum.album.name} </span>
+                    <span className='track-details-date'> • {datum.album.release_date.slice(0, 4)} </span>
+                    <p className='track-details-artist'> {datum.artists[0].name} </p>
+                    <p className='track-details-props'> Tempo: {Math.floor(datum.tempo)} BPM </p>
+                    <p className='track-details-props'> Key: {keyArr[datum.key]} {modes[datum.mode]} </p>
+                    <p className='track-details-props'>Beats Per Bar: {datum.time_signature}</p>
                 </div>
                 
-                <div className="album-data-div">
-                    <h2>"{datum.name}"</h2>
-                    <p>
-                        Tempo: {Math.floor(datum.tempo)} BPM
-                        <br/>
-                        Key: {keyArr[datum.key]} {modes[datum.mode]} 
-                        <br/>
-                        Beats Per Bar: {datum.time_signature}
-                    </p>
-                    
-                    
-                </div>
-
             </div>
-            <div >
-                <div className="radar">
-
+            <div className='radar-container'>
                 <Radar data={data} options={options} />
-                </div>
-
             </div>
-        </div>
+
+        </>
     )
 
 }

@@ -17,8 +17,8 @@ const DataSelector = () => {
   
   return (
     <div className='data-selector'>
-      <p>Based on your</p>
-      <select onChange={e => dispatch(setSelected({ target: e.target.value}))}>
+      <p >Based on your</p>
+      <select className='select' onChange={e => dispatch(setSelected({ target: e.target.value}))}>
         <option value="top">Top Tracks</option>
         <option value="recent">Most Recent Tracks</option>
         <option value="liked">Liked Tracks</option>
@@ -30,8 +30,8 @@ const DataSelector = () => {
 
       {target === 'top' && 
           <>
-            <p>from the past </p>
-            <select onChange={e => dispatch(setSelected({target: 'top', time_range: e.target.value}))}>
+            <p >from the past </p>
+            <select className='select' onChange={e => dispatch(setSelected({target: 'top', time_range: e.target.value}))}>
               <option value="short_term">4 weeks</option>
               <option value="medium_term">6 months</option>
               <option value="long_term">All time</option>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import SingleTrack from './SingleTrack'
 
@@ -9,7 +9,13 @@ const Tracks = () => {
   const { tracks, features } = useSelector(state => state.spotify)
 
 
-  let order = []
+  useEffect(() => {
+    if (targetTrack === 0 && features.length) {
+      setTargetTrack({...tracks[0], ...features[0]})
+    }
+  }, [tracks, features, sort])
+
+  let order = []  //[[0, 34], [1, 12], [2,8],...]
   if (sort === 'date added') {
     tracks.forEach((_,i) => order.push([i, tracks.length - i -1]))
   } else if (sort === 'popularity') {
@@ -24,7 +30,7 @@ const Tracks = () => {
       }
     )
   }
-  order = order.sort((x,y) => y[1] - x[1])
+  order = order.sort((x,y) => y[1] - x[1]) //???
 
   const trackEles = []
   order.forEach((x, i)=> {
@@ -36,19 +42,21 @@ const Tracks = () => {
     trackEles.push(
       <li id={i} key={i} className={style}
         onClick={() => {
+          console.log(ele, features[x[0]])
+          
           setTargetTrack({...ele, ...features[x[0]]})
         }}
       >
-      <div className="track-div">
-        <div className="album-div">
+      <div className="track-row">
+        <div className="track-row-left">
           <img className="album-art" src={ele.album.images[0].url} alt="album art"></img>
           <div className="song-info">
             <p className='song-title'>"{ele.name}"</p>
-            <p className="artist-name">{ele.artists[0].name}</p>
+            <p className="song-artist">{ele.artists[0].name}</p>
           </div>
         </div>
-        <div className="song-data">
-          <p className="song-title"> {minutes}:{seconds}</p>
+        <div className="track-row-right">
+          <p className="song-duration"> {minutes}:{seconds}</p>
         </div>
         
       </div>
@@ -57,14 +65,14 @@ const Tracks = () => {
 
   if (tracks.length < 1 || features.length < 1 || tracks.length !== features.length) return <>wut</>
   return (
-    <div className="tracklist-section">
+    <div className="flex-container tracks-container">
       
-      <div className="tracks-container">
-        <h1>Track List:</h1>
+      <div className="=flex-item track-list-container">
+        <h1>Track List</h1>
         <div className='sortby'>
 
-        <h3>Sort By: </h3> 
-        <select onChange={e => setSort(e.target.value)}>
+        <p>Sort By: </p> 
+        <select className='select' onChange={e => setSort(e.target.value)}>
           <option value="date added">Date Added</option>
           <option value="popularity">Popularity</option>
           <option value="liveness">Liveness</option>
@@ -73,11 +81,11 @@ const Tracks = () => {
           <option value="danceability">Danceability</option>
         </select>
         </div>
-        <ul className="track-ul">
+        <ul className="track-list">
           {trackEles}
         </ul>
       </div>
-      <div className="track-show-container"> 
+      <div className="flex-item-long track-details-container"> 
         <SingleTrack datum={targetTrack} />
       </div>
   </div>
