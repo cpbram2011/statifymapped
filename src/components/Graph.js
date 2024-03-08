@@ -1,14 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import 'chart.js/auto';
-
+import Loading from './Loading';
 import { Doughnut, Bar } from 'react-chartjs-2';
-
-const zeroFive = n => {  //.169
-  n = Math.floor(n * 100)   //16
-  n -= (n % 5)  //15
-  return (n / 5);
-}
 
 const findIndexOfGreatest = (array) => {
   var greatest;
@@ -24,22 +18,21 @@ const findIndexOfGreatest = (array) => {
   return indexOfGreatest;
 }
 
-  //hide this shit
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d')
-  canvas.width = 300;
-  canvas.height = 300;
-  const gradient = context.createLinearGradient(0, 0, 300, 0);
-  gradient.addColorStop(0, "rgb(0, 77, 255)");
-  gradient.addColorStop(0.5505050505050505, "rgb(114, 255, 86)");
-  gradient.addColorStop(1, "rgb(255, 20, 20)");
-  context.fillStyle = gradient;
-  context.fillRect(0, 0, 300, 300);
+const canvas = document.createElement('canvas');
+const context = canvas.getContext('2d')
+canvas.width = 300;
+canvas.height = 300;
+const gradient = context.createLinearGradient(0, 0, 300, 0);
+gradient.addColorStop(0, "rgb(0, 77, 255)");
+gradient.addColorStop(0.5505050505050505, "rgb(114, 255, 86)");
+gradient.addColorStop(1, "rgb(255, 20, 20)");
+context.fillStyle = gradient;
+context.fillRect(0, 0, 300, 300);
 
 
 
 const Graph = () => {
-  const { features, tracks } = useSelector(state => state.spotify)
+  const { features, tracks, loading } = useSelector(state => state.spotify)
   const keys = [0,0,0,0,0,0,0,0,0,0,0,0];
   const keyArr = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B',];
   const modes = [0,0];
@@ -56,9 +49,6 @@ const Graph = () => {
       tempos[tempo] += 1
     }
   })
-
-
-  
 
   const favKeyIndex = findIndexOfGreatest(keys);
   const favKey = favKeyIndex.map(x => keyArr[x]);
@@ -78,8 +68,6 @@ const Graph = () => {
   else if (favTempo < 121)  speed = 'walking pace'
   else if (favTempo < 180) speed = 'fast'
   else speed = 'very fast'
-  
-  window.huh = {tracks, features, keys, modes, tempos}
   
   
   const keyData = {
@@ -173,10 +161,10 @@ const Graph = () => {
     responsive: true,
     maintainAspectRatio: true
   };
-  
-    // crazy bullshit goo go go gooo
-  
+    
   return (
+    <>
+      {loading && <Loading />}
     <div className='flex-container'>
       <div className="flex-item">
         <p className="common-data">Most Common Key: {favKey.map((x, i) => i === favKey.length - 1 ? x : x + ' & ')}</p>
@@ -211,6 +199,7 @@ const Graph = () => {
         />
       </div>
     </div>
+    </>
   )
 }
 

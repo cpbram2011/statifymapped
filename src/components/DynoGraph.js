@@ -5,7 +5,7 @@ import dynoDescriptions from './dynoText';
 
 
 const DynoGraph = () => {
-  const [dyno, setDyno] = useState('popularity')
+  const [dyno, setDyno] = useState('acousticness')
   const { tracks, features } = useSelector(state => state.spotify)
   
   const oneFive = n => {  //16
