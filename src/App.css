@@ -175,12 +175,13 @@ h2 {
 
 .home {
   /* background-color: pink; */
-  margin: 0 30px;
+  /* margin: 0 30px; */
 }
 
 
 .data-selector {
-  margin-top: 10px;
+  margin: 10px auto;
+  width: calc(90% - 20px);
   padding: 20px;
   border-radius: 5px;
   display: flex;
@@ -207,8 +208,7 @@ h2 {
   margin-top: 10px;
   gap: 10px;
   display: flex;
-  justify-content: space-between;
-  width: 100% !important;
+  justify-content: center;
 }
 
 
@@ -218,7 +218,7 @@ h2 {
   position: relative;
   border-radius: 5px;
   padding: 10px;
-  width: 33.3%;
+  width: 30%;
 }
 
 .flex-item-long {
@@ -227,7 +227,7 @@ h2 {
   position: relative;
   border-radius: 5px;
   padding: 10px;
-  width: 67%;
+  width: calc(60% + 10px);
 }
 
 .keysig {
@@ -305,9 +305,6 @@ h2 {
 .track-list-container {
   display: flex;
   flex-direction: column;
-  background-color: var(--darkgrey);
-  border-radius: 5px;
-  padding: 10px;
 }
 
 .sortby {

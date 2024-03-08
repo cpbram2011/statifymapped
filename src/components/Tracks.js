@@ -67,7 +67,7 @@ const Tracks = () => {
   return (
     <div className="flex-container tracks-container">
       
-      <div className="=flex-item track-list-container">
+      <div className="flex-item track-list-container">
         <h1>Track List</h1>
         <div className='sortby'>
 
