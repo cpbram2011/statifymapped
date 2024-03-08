@@ -12,9 +12,11 @@ const Tracks = () => {
 
   const handleChange = e => {
     setTargetTrack(e)
-    const oldTarget = document.getElementsByClassName('selected-track')[0]
+    const oldTargetsList = document.getElementsByClassName('selected-track')
+    Array.prototype.forEach.call(oldTargetsList, oldTarget => {
+      oldTarget.classList.remove('selected-track')
+    });
     const newTarget = document.getElementById(e.id)
-    oldTarget.classList.remove('selected-track')
     newTarget.classList.add('selected-track')
   }
 

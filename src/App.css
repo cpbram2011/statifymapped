@@ -78,7 +78,7 @@ h2 {
   gap: 5px;
   border-radius: 50px;
   padding: 5px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .pfp {
@@ -89,14 +89,57 @@ h2 {
 
 .dropdown {
   position: absolute;
-  border: 1px solid blue;
-  background-color: lightgray;
-  width: 100px;
-  right: 10px;
-  top: 90px;
+  background-color: var(--mediumgrey);
+  border-radius: 5px;
+  width: 150px;
+  right: 20px;
+  top: 70px;
+}
+
+.dropdown div {
+  padding: 10px 8px;
+  cursor: default;
+}
+.dropdown div:first-child {
+  border-radius: 5px 5px 0 0;
+}
+.dropdown div:last-child {
+  border-radius: 0 0 5px 5px;
+}
+
+.dropdown div:hover {
+  background-color: var(--lightgrey);
+
 }
 
 
+.modal-container {
+  position: absolute;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.modal {
+  top: 30vh;
+  width: min(600px, 80vw);
+  border: 2px solid var(--mediumgrey);
+  border-radius: 10px;
+  background-color: var(--darkgrey);
+  padding: 20px;
+}
+
+
+.x {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
 /* splash.js */
 
