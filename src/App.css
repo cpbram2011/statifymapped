@@ -116,7 +116,7 @@ h2 {
 .modal-container {
   position: absolute;
   top:0;
-  width: 100vw;
+  width: 95vw;
   height: 100vh;
   display: flex;
   justify-content: center;
