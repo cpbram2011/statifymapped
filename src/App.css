@@ -16,7 +16,7 @@
   --violet: #8a2be2;
   --pink: #ff00ff;
   --spotifygreen: #1ED760;
-
+  --spotifydarkgreen: rgba(90, 221, 130, .4);
 
 
   --mediumgrey: #999999;
@@ -350,9 +350,14 @@ h2 {
   margin: 0;
 }
 .track-list li:hover{
-  background-color: rgba(90, 221, 130, .4);
+  background-color: var(--spotifydarkgreen);
   cursor: pointer;
 }
+
+.selected-track {
+  background-color: var(--spotifygreen);
+}
+
 
 .track-row {
   display: flex;
@@ -394,9 +399,6 @@ h2 {
 }
 
 
-.selected-track {
-  background-color: #00ffd0;
-}
 
 
 .track-row-right {

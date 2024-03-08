@@ -6,45 +6,66 @@ import SingleTrack from './SingleTrack'
 const Tracks = () => {
   const [ targetTrack, setTargetTrack ] = useState(0)
   const [ sort, setSort ] = useState('date added')
+  const [ trackOrder, setTrackOrder ] = useState([])
   const { tracks, features } = useSelector(state => state.spotify)
 
 
-  useEffect(() => {
-    if (targetTrack === 0 && features.length) {
-      setTargetTrack({...tracks[0], ...features[0]})
-    }
-  }, [tracks, features, sort])
-
-  let order = []  //[[0, 34], [1, 12], [2,8],...]
-  if (sort === 'date added') {
-    tracks.forEach((_,i) => order.push([i, tracks.length - i -1]))
-  } else if (sort === 'popularity') {
-    tracks.forEach((x,i) => { order.push([i, x.popularity]) })
-  } else {
-    features.forEach((x, i) =>{
-      if (!x ) {
-        console.log('huh', tracks[i], features[i], i)
-        return
-      }
-       order.push([i, x[sort]])
-      }
-    )
+  const handleChange = e => {
+    setTargetTrack(e)
+    const oldTarget = document.getElementsByClassName('selected-track')[0]
+    const newTarget = document.getElementById(e.id)
+    oldTarget.classList.remove('selected-track')
+    newTarget.classList.add('selected-track')
   }
-  order = order.sort((x,y) => y[1] - x[1]) //???
+
+  useEffect(() => {
+    setSort('date added')
+  }, [features])
+
+  useEffect(() => {
+    if (!tracks.length || !features.length) return
+      let order = [] 
+      if (sort === 'date added') {
+        tracks.forEach((_,i) => order.push([i, tracks.length - i -1]))
+      } else if (sort === 'popularity') {
+        tracks.forEach((x,i) => { order.push([i, x.popularity]) })
+      } else {
+        features.forEach((x, i) =>{
+          if (!x ) {
+            console.log('huh', tracks[i], features[i], i)
+            return
+          }
+          order.push([i, x[sort]])
+          }
+        )
+      }
+      order = order.sort((x,y) => y[1] - x[1])
+      setTrackOrder(order)
+  }, [sort, features])
+
+
+
+  useEffect(() => {
+    if (!trackOrder.length) return
+    handleChange({...tracks[ trackOrder[0][0]], ...features[ trackOrder[0][0]]})
+
+  }, [trackOrder])
+
 
   const trackEles = []
-  order.forEach((x, i)=> {
+  trackOrder.forEach((x, i)=> {
     const ele = tracks[x[0]];
+    if (!ele) return null
     let minutes = Math.floor((ele.duration_ms / 1000) / 60).toString()
     let seconds = Math.floor((ele.duration_ms / 1000) % 60)
     seconds = (seconds < 10) ? `0${seconds.toString()}` : seconds.toString()
     const style = x[0] === 0 ? "selected-track" : ""
     trackEles.push(
-      <li id={i} key={i} className={style}
+      <li id={ele.id} key={i} className={style}
         onClick={() => {
           console.log(ele, features[x[0]])
           
-          setTargetTrack({...ele, ...features[x[0]]})
+          handleChange({...ele, ...features[x[0]]})
         }}
       >
       <div className="track-row">
