@@ -50,7 +50,7 @@ const Splash = () => {
 
       </div>
       <div className='splash-section-3'>
-        
+
         <div className='splash-section-3-column'> 
           <h4>Contact</h4>
           <h5 className='link' onClick={() => window.open("https://github.com/cpbram2011", '_blank').focus()}>Github</h5>
@@ -61,7 +61,7 @@ const Splash = () => {
         <div className='splash-section-3-column'> 
           <h4>About</h4>
           <h5 style={{width: '500px', lineHeight: '25px'}} > 
-            Spotify Mapped is a web app that uses Spotify API to connect to your 
+            Statify is a web app that uses Spotify API to connect to your 
             Spotify account and display graphs with data pulled from your
             listening history, saved tracks, and playlists.
           </h5>

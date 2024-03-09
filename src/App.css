@@ -68,12 +68,9 @@ h3 {
   padding: 10px 20px;
 }
 
-.mapped {
+header span {
   color: var(--spotifygreen);
-  font-weight: 500;
-  font-size: 2rem;
-  text-transform: uppercase;
-  font-family: 'Courier New', monospace;
+  font-weight: 600;
 }
 
 .navbar-drop-btn {

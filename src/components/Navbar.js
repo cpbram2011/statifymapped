@@ -35,7 +35,7 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <header>Spotify <span className='mapped'>mapped</span></header>
+      <header><span>Statify</span> {'{ }'}</header>
 
       { session.isAuthenticated &&
         <div className='navbar-drop-btn' onClick={() => setDropdownOpen(state => !state)} ref={dropdownRef} >
