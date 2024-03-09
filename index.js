@@ -12,6 +12,9 @@ app.use(bodyParser.json());
 
 app.use(auth)
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
