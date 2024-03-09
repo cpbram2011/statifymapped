@@ -8,7 +8,7 @@ const Splash = () => {
 
   const redirect_uri = 
     (process.env.NODE_ENV === 'production') ?
-      'https://statify-app.herokuapp.com/login'
+      'https://statifymapped-b581e01ec5ad.herokuapp.com//login'
     :
       'http://localhost:8000/login'
     ;
