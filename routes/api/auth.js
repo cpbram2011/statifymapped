@@ -110,7 +110,7 @@ router.get('/callback', function (req, res) {
 
                 var res_uri;
                     if (process.env.NODE_ENV === 'production') {
-                        res_uri = 'https://statify-app.herokuapp.com/#/';
+                        res_uri = 'https://statifymapped-b581e01ec5ad.herokuapp.com/#/';
                     } else {
                         res_uri = 'http://localhost:3000/#/';
                     }
