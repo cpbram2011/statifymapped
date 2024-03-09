@@ -6,16 +6,23 @@ import splashIcon3 from './../assets/splashicon3.png'
 
 const Splash = () => {
 
+  const redirect_uri = 
+    (process.env.NODE_ENV === 'production') ?
+      'https://statify-app.herokuapp.com/login'
+    :
+      'http://localhost:8000/login'
+    ;
+
+
   return (
     <div className='splash'>
       <div className='splash-section-1'>
-
         <div className='splash-section-1-left'>
           <h1>Unlock Insights into Your Music Taste</h1>
           <h2>Dive into the data behind your musical taste, gaining valuable insights that illuminate your listening habits</h2>
           <br/>
           <br/>
-          <a href='http://localhost:8000/login' className='login-link'> Login to Spotify </a>
+          <a href={redirect_uri} className='login-link'> Login to Spotify </a>
         </div>
 
         <div className='splash-section-1-right'>
