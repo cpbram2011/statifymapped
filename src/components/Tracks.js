@@ -34,7 +34,6 @@ const Tracks = () => {
       } else {
         features.forEach((x, i) =>{
           if (!x ) {
-            console.log('huh', tracks[i], features[i], i)
             return
           }
           order.push([i, x[sort]])
@@ -64,11 +63,7 @@ const Tracks = () => {
     const style = x[0] === 0 ? "selected-track" : ""
     trackEles.push(
       <li id={ele.id} key={i} className={style}
-        onClick={() => {
-          console.log(ele, features[x[0]])
-          
-          handleChange({...ele, ...features[x[0]]})
-        }}
+        onClick={() => { handleChange({...ele, ...features[x[0]]}) }}
       >
       <div className="track-row">
         <div className="track-row-left">

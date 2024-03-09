@@ -6,17 +6,16 @@ import Splash from './components/Splash'
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Axios from './util/axios'
+import Loading from './components/Loading';
 
 
 function App() {
   const dispatch = useDispatch()
-  const {isAuthenticated, refresh_token} = useSelector(state => state.session)
+  const {isAuthenticated, refresh_token, loading} = useSelector(state => state.session)
 
-  // const refresh_token = 'asdfasddf', isAuthenticated = true
 
   useEffect(() => {
     const tokens = getHashParams()
-    console.log('dispatch setTokens')
     if (tokens.access_token) {
       dispatch(setTokens(tokens))
     }
@@ -49,12 +48,18 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-        { !isAuthenticated ?
-          <Splash />
-          :
-          <>
-            <Home />
-          </>
+
+        { loading ? <Loading /> :
+        <>
+          { !isAuthenticated ?
+            <Splash />
+            :
+            <>
+              <Home />
+            </>
+          }
+        
+        </>
         }
 
       

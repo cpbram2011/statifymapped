@@ -16,7 +16,6 @@ export const fetchPlaylists = createAsyncThunk(
   async () => {
     try {
       const res = await spotifyApi.getUserPlaylists({ limit: 50 });
-      console.log('res', res)
       const data = await res.items
       return data; 
     } catch (error) {

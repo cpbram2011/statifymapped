@@ -83,7 +83,7 @@ const DynoGraph = () => {
       labels,
       datasets: [{
           data: dynoData[dyno],
-          backgroundColor: '#3b9d5c',
+          backgroundColor: '#1ED760',
       }]
   };
 

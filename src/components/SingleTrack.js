@@ -34,8 +34,8 @@ const SingleTrack = ({datum}) => {
             {
                 label: '1 to 10',
                 data: trackData,
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(30, 215, 96, 0.5)',
+                borderColor: 'rgba(30, 315, 96, 1)',
                 borderWidth: 1,
                 
             },
@@ -48,14 +48,14 @@ const SingleTrack = ({datum}) => {
             ticks: { beginAtZero: true, stepSize: 1 },
             pointLabels: { fontSize: 20, fontColor: 'white' },
             grid: {
-            color: 'rgba(250, 250, 250, .6)',
-            lineWidth: 2,
-            borderColor: 'rgba(250, 250, 250, .6)',
-            drawBorder: true,
-            drawOnChartArea: true,
-            drawTicks: true
-        },
-        angleLines: { color: 'rgba(250, 250, 250, .6)' }
+                color: 'rgba(125, 125, 125, .5)',
+                lineWidth: 2,
+                borderColor: 'rgba(125, 125, 125, .6)',
+                drawBorder: true,
+                drawOnChartArea: true,
+                drawTicks: true
+            },
+            angleLines: { color: 'rgba(250, 250, 250, .6)' }
         },
     },
     plugins: {

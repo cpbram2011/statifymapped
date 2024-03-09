@@ -68,9 +68,9 @@ const Navbar = () => {
             <h3>How is my data used?</h3>
             <p>To use Statify, you'll need to allow the app to have access to some of your account information. Your data is only used to calculate an average with which users can compare their own scores.</p>        
 
-            <h3>I have some other issue (or concern, compliment, maybe a suggestion)</h3>
-            <a href='mailto:cpbram2011@gmail.com'>Feel free to reach out via email!</a>
-              
+            <h3>I have some other issue (or concern, compliment, suggestion, etc.)</h3>
+            <a className='email' href='mailto:cpbram2011@gmail.com'>Feel free to reach out via email!</a>
+            
         </div>
       </div>
       

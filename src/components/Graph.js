@@ -45,7 +45,6 @@ const Graph = () => {
       modes[datum.mode] += 1;
       let tempo = Math.floor(datum.tempo);
       tempo -= (tempo % 10)
-      if (tempo === 0) console.log('datum', datum, tracks[idx])
       tempos[tempo] += 1
     }
   })
