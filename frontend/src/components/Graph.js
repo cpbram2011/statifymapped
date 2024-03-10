@@ -166,6 +166,9 @@ const Graph = () => {
       {loading && <Loading />}
     <div className='flex-container'>
       <div className="flex-item">
+        <h2 className='keysig'>
+            ♯/♭
+        </h2>
         <p className="common-data">Most Common Key: {favKey.map((x, i) => i === favKey.length - 1 ? x : x + ' & ')}</p>
         
         <Doughnut
@@ -174,9 +177,6 @@ const Graph = () => {
           height={400}
           width={420}
         />
-        <div className='keysig'>
-            ♯/♭
-        </div>
 
       </div>
       <div className='flex-item'>

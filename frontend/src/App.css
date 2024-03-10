@@ -157,27 +157,47 @@ header span {
 
 .splash-section-1 {
   display: flex;
-  padding: 0 20px;
+  position: relative;
   align-items: center;
-  justify-content: center;
   height: 800px;
   background-color: #121212;
 }
 
-.splash-section-1-left {
+.splash-section-1-text {
+  z-index: 8;
+  padding: 20px 10vw;
+  background-color: rgba(18, 18, 18, 0.6);
   
 }
 
-.splash-section-1-right {
-  /* border: 1px solid blue; */
+.splash-section-1-text h2 {
+  /* max-width: 800px; */
+}
+
+.splash-img-container {
+  position: absolute;
+  overflow: hidden;
+  right: 10vw;
 }
 
 .splash-img-1 {
-  width: 800px;
+
+  max-height: 800px;
+}
+
+@media (width <= 425px) {
+  .splash-img-container {
+    border: 1px solid red;
+    width: 100%;
+    right: 0;
+  }
+
 }
 
 .login-link {
   text-decoration: none;
+  display: block;
+  width: fit-content;
   color: white;
   font-size: 1.2rem;
   padding: 15px 20px;
@@ -189,26 +209,36 @@ header span {
 
 .splash-section-2 {
   box-sizing: border-box;
-  padding: 0 150px;
+  padding: 0 10vw 10px;
   height: 700px;
   margin: 50px 0;
   background: linear-gradient(90deg, #2d5c91, #552f6d);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 100px
+}
 
-
+@media (width <= 425px) {
+  .splash-section-2 {
+    height: unset;
+    flex-direction: column;
+  }
 }
 
 .splash-section-2-column {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 350px;
 }
 
 
 .splash-icon {
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
+  width: 100%;
 }
 
 .splash-section-3 {
@@ -229,6 +259,11 @@ header span {
 }
 
 
+.splash-section-3-column h5 {
+
+}
+
+
 .link {
   cursor: pointer;
 }
@@ -243,6 +278,7 @@ header span {
   padding: 20px;
   border-radius: 5px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   background-color: var(--darkgrey);
 }
@@ -286,12 +322,21 @@ header span {
   }
 }
 
-
 .flex-container {
   margin-top: 10px;
   gap: 10px;
   display: flex;
   justify-content: center;
+}
+
+@media (width <= 425px) {
+  .flex-container {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    margin: 0 2.5vw 20px;
+    border-bottom: 1px solid var(--mediumgrey);
+  }
 }
 
 
@@ -304,6 +349,15 @@ header span {
   width: 30%;
 }
 
+
+@media (width <= 425px) {
+  .flex-item {
+    width: 100%;
+    min-height: 40vh;
+  }
+}
+
+
 .flex-item-long {
   box-sizing: border-box;
   background-color: var(--darkgrey);
@@ -313,25 +367,53 @@ header span {
   width: calc(60% + 10px);
 }
 
+
+@media (width <= 425px) {
+  .flex-item-long {
+    width: 100%;
+    min-height: 40vh;
+  }
+
+  .dyno-graph {
+    height: 85% !important;
+  }
+}
+
+.common-data {
+  height: 40px;
+}
+
+
 .keysig {
   margin: 0;
-  padding: 0;
+  border-radius: 100%;
   box-sizing: border-box;
   position: absolute;
   z-index: 1;
+  top: 50%;
   left: 30%;
   right: 30%;
   bottom: 35%;
   text-align: center;
-  font-size: 5vw;
+  font-size: 2.5rem;
 }
 
 
-/* DynoGraph  ******COPIED**********/
+
+
+/* DynoGraph  ****************/
 
 
 .dyno-container {
   height: 500px;
+}
+
+
+@media (width <= 425px) {
+  .dyno-container {
+    height: 80vh;
+    flex-direction: column-reverse;
+  }
 }
 
 
@@ -343,7 +425,6 @@ header span {
   flex-direction: column;
   width: 100%;
   height: 40%;
-
 }
 
 #dyno-select button {
@@ -366,7 +447,8 @@ header span {
   background-color: var(--darkgrey);
   flex: 1;
   border-radius: 5px;
-  padding: 10px
+  padding: 10px;
+  height: min(220px, 50%);
 }
 
 #average{
@@ -384,6 +466,14 @@ header span {
 .tracks-container {
   height: 800px;
   margin-bottom: 100px;
+}
+
+@media (width <= 425px) {
+  .tracks-container {
+    height: unset;
+    flex-direction: column-reverse;
+
+  }
 }
 
 .track-list-container {
@@ -407,6 +497,14 @@ header span {
   padding: 0px;
   margin: 0;
 }
+
+@media (width <= 425px) {
+  .track-list {
+    height: 40vh;
+  }
+}
+
+
 
 .track-list li{
   transition: .2s;
@@ -485,6 +583,13 @@ header span {
   height: 800px;
 }
 
+@media (width <= 425px) {
+  .track-details-container {
+    height: 60vh;
+  }
+}
+
+
 .track-details {
   display: flex;
   gap: 10px;
@@ -492,13 +597,21 @@ header span {
 }
 
 .track-details-img {
-  height: 100%;
+  width: min(250px, 50%);
 }
 
 .track-details-text-container {
   /* border: 1px solid blue; */
+
   
 }
+
+@media (width <= 425px) {
+  .track-details-text-container * {
+    margin: 5px 0;
+  }
+}
+
 
 .track-details-title {
   margin-top: 0;

@@ -21,15 +21,24 @@ const SingleTrack = ({datum}) => {
     const modes = ['Maj', 'Min']
     const albumArtUrl = datum.album.images[0].url
     
-    const trackData = [datum.popularity / 10, 
-        datum.liveness * 10, 
+    const trackData = [
+        datum.popularity / 10, 
         datum.energy * 10, 
-        datum.valence * 10, 
         datum.danceability * 10, 
-        datum.instrumentalness * 10]
+        datum.valence * 10, 
+        datum.liveness * 10, 
+        datum.instrumentalness * 10
+    ]
         
     const data = {
-        labels: ['Popularity', 'Liveness', 'Energy', 'Valence', 'Danceability', 'Instrumentalness'],
+        labels: [
+            'Popularity',  
+            'Energy', 
+            'Danceability', 
+            'Valence', 
+            'Liveness',
+            'Instrumentalness', 
+        ],
         datasets: [
             {
                 label: '1 to 10',

@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import dynoDescriptions from './dynoText';
+import useWindowDimensions from './../util/useWindowDimensions'
 
 
 const DynoGraph = () => {
   const [dyno, setDyno] = useState('acousticness')
   const { tracks, features } = useSelector(state => state.spotify)
-  
+  const { height, width } = useWindowDimensions();
+
   const oneFive = n => {  //16
     n -= (n % 5)  //15
     return (n / 5); //3
@@ -125,10 +127,12 @@ const DynoGraph = () => {
         </div>
       </div>
       <div className='flex-item-long'>
+        { width <= 425 && <p> {dyno.charAt(0).toUpperCase() + dyno.slice(1)} </p>}
         <Bar 
+        className='dyno-graph'
           data={currentData}
           options={dynoOptions}
-        />
+          />
       </div>
     </div>
   )

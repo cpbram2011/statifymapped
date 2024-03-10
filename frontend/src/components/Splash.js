@@ -17,7 +17,7 @@ const Splash = () => {
   return (
     <div className='splash'>
       <div className='splash-section-1'>
-        <div className='splash-section-1-left'>
+        <div className='splash-section-1-text'>
           <h1>Unlock Insights into Your Music Taste</h1>
           <h2>Dive into the data behind your musical taste, gaining valuable insights that illuminate your listening habits</h2>
           <br/>
@@ -25,9 +25,10 @@ const Splash = () => {
           <a href={redirect_uri} className='login-link'> Login to Spotify </a>
         </div>
 
-        <div className='splash-section-1-right'>
-          <img className='splash-img-1' src={treble} />
-        </div>
+      <div className='splash-img-container'>
+        <img className='splash-img-1' src={treble} />
+
+      </div>
 
 
       </div>
@@ -67,7 +68,7 @@ const Splash = () => {
 
         <div className='splash-section-3-column'> 
           <h4>About</h4>
-          <h5 style={{width: '500px', lineHeight: '25px'}} > 
+          <h5> 
             Statify is a web app that uses Spotify API to connect to your 
             Spotify account and display graphs with data pulled from your
             listening history, saved tracks, and playlists.

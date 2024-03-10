@@ -28,6 +28,8 @@ const DataSelector = () => {
             <option key={`playlist-${idx}`} value={listItem.id}>{listItem.name}</option>
           ))}
       </select>
+      {/* cbtodo: ask if this is lame */}
+      { !['top', 'recent', 'liked'].includes(target) && <p> playlist </p> }
 
       {target === 'top' && 
           <>
