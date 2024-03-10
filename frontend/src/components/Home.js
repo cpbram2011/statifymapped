@@ -5,6 +5,7 @@ import DataSelector from './DataSelector';
 import Graph from './Graph';
 import DynoGraph from './DynoGraph';
 import Tracks from './Tracks';
+import { Footer } from './Splash';
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,7 @@ const Home = () => {
       <Graph />
       <DynoGraph />
       <Tracks />
+      <Footer />
     </div>
   )
 }

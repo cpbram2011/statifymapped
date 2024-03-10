@@ -15,7 +15,7 @@
   --indigo: #4b0082;
   --violet: #8a2be2;
   --pink: #ff00ff;
-  --spotifygreen: #1ED760;
+  --spotifygreen: #1DB954;
   --spotifydarkgreen: rgba(90, 221, 130, .4);
   --spotifygreenalt: #3b9d5c;
 
@@ -54,6 +54,18 @@ h2 {
 
 h3 {
   font-weight: 400;
+  margin: 10px;
+
+}
+
+h5 {
+  margin: 10px;
+}
+
+.bold {
+  font-weight: 800;
+  margin-bottom: 10px;
+
 }
 
 .navbar {
@@ -68,9 +80,13 @@ h3 {
   padding: 10px 20px;
 }
 
-header span {
+
+.mapped {
   color: var(--spotifygreen);
-  font-weight: 600;
+  font-weight: 400;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
 }
 
 .navbar-drop-btn {
@@ -241,16 +257,17 @@ header span {
 }
 
 .splash-section-3 {
-  padding: 0 50px;
-  height: 400px;
+  padding: 0 5vw 25px;
   background-color: black;
   display: flex;
-  gap: 100px;
+  justify-content: space-between;
+  flex-wrap: wrap;
   
 }
 
 .splash-section-3-column {
-  
+  min-width: 300px;
+  max-width: 900px;
 }
 
 .splash-section-3-column h4 {
@@ -260,6 +277,16 @@ header span {
 
 .splash-section-3-column h5 {
 
+}
+
+.spotify-credit-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.spotify-credit-container svg {
+  /* border: 1px solid red; */
 }
 
 

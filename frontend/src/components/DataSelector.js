@@ -4,7 +4,7 @@ import { setSelected } from '../reducers/spotify_reducer';
 
 const DataSelector = () => {
   const dispatch = useDispatch()
-  const [ target, setTarget] = useState('top')
+  const [ target, setTarget] = useState('liked')
   const [ timeRange, setTimeRange ] = useState('short_term')
 
   const { playlists } = useSelector(state => state.spotify)
@@ -20,9 +20,9 @@ const DataSelector = () => {
     <div className='data-selector'>
       <p >Based on your</p>
       <select className='select' onChange={e => handleChange({ target: e.target.value})}>
-        <option value="top">Top Tracks</option>
-        <option value="recent">Most Recent Tracks</option>
         <option value="liked">Liked Tracks</option>
+        <option value="recent">Most Recent Tracks</option>
+        <option value="top">Top Tracks</option>
         <option value="playlist" disabled>— Playlists —</option>
           {playlists.map( (listItem, idx) => (
             <option key={`playlist-${idx}`} value={listItem.id}>{listItem.name}</option>

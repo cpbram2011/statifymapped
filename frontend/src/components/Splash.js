@@ -3,7 +3,47 @@ import treble from './../assets/treble.png'
 import splashIcon1 from './../assets/splashicon1.png'
 import splashIcon2 from './../assets/splashicon2.png'
 import splashIcon3 from './../assets/splashicon3.png'
+import SpotifyLogo from '../assets/spotifylogo.js'
 
+
+
+export const Footer = () => (
+  <div className='splash-section-3'>
+    <div className='splash-section-3-column'> 
+      <h4>About</h4>
+      <h5> 
+        Statify Mapped is a web app that uses Spotify API to connect to your 
+        Spotify account and display graphs with data pulled from your
+        listening history, saved tracks, and playlists.
+      </h5>
+      <div className='faq'>
+        <h3>F.A.Q.</h3> 
+        <h5 className='bold' >Is it secure?</h5>
+        <h5>Statify Mapped adheres to all the latest standards in web security. And as logging in to Statify Mapped is handled by Spotify, it's as secure as logging in to Spotify itself.</h5>
+        <h5 className='bold' >How is my data used?</h5>
+        <h5>To use Statify Mapped, you'll need to allow the app to have access to some of your account information. Your data is only used to calculate an average with which users can compare their own scores.</h5>        
+        <h5 className='bold' >I have some other issue (or concern, compliment, suggestion, etc.)</h5>
+        <h5><a className='email' href='mailto:cpbram2011@gmail.com'>Feel free to reach out via email!</a></h5>
+      </div>
+      
+
+      <div className='spotify-credit-container'>
+        <h5>
+          All data is provided by 
+        </h5>
+        <SpotifyLogo />
+      </div>
+    </div>
+
+    <div className='splash-section-3-column'> 
+      <h4>Contact</h4>
+      <h5 className='link' onClick={() => window.open("https://github.com/cpbram2011", '_blank').focus()}>Github</h5>
+      <h5 className='link' onClick={() => window.open("https://www.linkedin.com/in/chris-bram/", '_blank').focus()}>LinkedIn</h5>
+      <h5 className='link' onClick={() => window.open("https://cpbram2011.github.io/", '_blank').focus()}>Portfolio</h5>
+    </div>
+
+  </div>
+)
 const Splash = () => {
 
   const redirect_uri = 
@@ -57,25 +97,7 @@ const Splash = () => {
 
 
       </div>
-      <div className='splash-section-3'>
-
-        <div className='splash-section-3-column'> 
-          <h4>Contact</h4>
-          <h5 className='link' onClick={() => window.open("https://github.com/cpbram2011", '_blank').focus()}>Github</h5>
-          <h5 className='link' onClick={() => window.open("https://www.linkedin.com/in/chris-bram/", '_blank').focus()}>LinkedIn</h5>
-          <h5 className='link' onClick={() => window.open("https://cpbram2011.github.io/", '_blank').focus()}>Portfolio</h5>
-        </div>
-
-        <div className='splash-section-3-column'> 
-          <h4>About</h4>
-          <h5> 
-            Statify is a web app that uses Spotify API to connect to your 
-            Spotify account and display graphs with data pulled from your
-            listening history, saved tracks, and playlists.
-          </h5>
-        </div>
-
-      </div>
+      <Footer />
     </div>
   )
 }
