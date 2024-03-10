@@ -187,7 +187,6 @@ header span {
 
 @media (width <= 425px) {
   .splash-img-container {
-    border: 1px solid red;
     width: 100%;
     right: 0;
   }
