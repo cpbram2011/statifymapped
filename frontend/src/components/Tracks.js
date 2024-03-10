@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import SingleTrack from './SingleTrack'
-
+import useWindowDimensions from './../util/useWindowDimensions'
 
 const Tracks = () => {
   const [ targetTrack, setTargetTrack ] = useState(0)
   const [ sort, setSort ] = useState('date added')
   const [ trackOrder, setTrackOrder ] = useState([])
   const { tracks, features } = useSelector(state => state.spotify)
+  const { height, width } = useWindowDimensions();
 
 
   const handleChange = e => {
@@ -86,7 +87,8 @@ const Tracks = () => {
     <div className="flex-container tracks-container">
       
       <div className="flex-item track-list-container">
-        <h1>Track List</h1>
+      { width > 425 && <h1>Tracks List</h1>}
+        
         <div className='sortby'>
 
         <p>Sort By: </p> 
