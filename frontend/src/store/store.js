@@ -1,6 +1,5 @@
 import { configureStore, Tuple } from '@reduxjs/toolkit'
 import { thunk } from 'redux-thunk';
-import logger from 'redux-logger';
 import spotifyReducer from './../reducers/spotify_reducer.js'
 import sessionReducer from './../reducers/session_reducer.js'
 
