@@ -52,7 +52,7 @@ router.get('/login', function (req, res) {
 
     // your routerlocation requests authorization
 
-    var scope = 'user-library-read user-read-private user-read-email user-read-recently-played user-modify-playback-state user-top-read user-read-currently-playing playlist-read-collaborative playlist-read-private';
+    var scope = 'user-library-read user-read-private user-read-recently-played user-top-read playlist-read-collaborative playlist-read-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
