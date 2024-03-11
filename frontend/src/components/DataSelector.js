@@ -18,7 +18,7 @@ const DataSelector = () => {
   
   return (
     <div className='data-selector'>
-      <p >Based on your</p>
+      <p></p>
       <select className='select' onChange={e => handleChange({ target: e.target.value})}>
         <option value="liked">Liked Tracks</option>
         <option value="recent">Most Recent Tracks</option>
@@ -29,7 +29,7 @@ const DataSelector = () => {
           ))}
       </select>
       {/* cbtodo: ask if this is lame */}
-      { !['top', 'recent', 'liked'].includes(target) && <p> playlist </p> }
+      {/* { !['top', 'recent', 'liked'].includes(target) && <p> playlist </p> } */}
 
       {target === 'top' && 
           <>
