@@ -13,8 +13,8 @@ var client_secret = secret.secretOrKey; // Your secret
 
 
 var redirect_uri;
-if (process.env.NODE_ENV === 'production') {
-    redirect_uri = 'https://www.statifymapped.com/callback';
+if (!process.env.NODE_ENV === 'production') {
+    redirect_uri = 'https://statifymapped.com/callback';
     // redirect_uri = 'https://statifymapped-b581e01ec5ad.herokuapp.com/callback';
 } else {
     redirect_uri = 'http://localhost:8000/callback';
@@ -111,7 +111,7 @@ router.get('/callback', function (req, res) {
 
                 var res_uri;
                     if (process.env.NODE_ENV === 'production') {
-                        res_uri = 'https://www.statifymapped.com/#/';
+                        res_uri = 'https://statifymapped.com/#/';
                         // res_uri = 'https://statifymapped-b581e01ec5ad.herokuapp.com/#/';
                     } else {
                         res_uri = 'http://localhost:3000/#/';
