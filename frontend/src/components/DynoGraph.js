@@ -19,17 +19,17 @@ const DynoGraph = () => {
     n -= (n % 5)  //15
     return (n / 5);
 }
-  const acousticness = new Array(20).fill(0);
-  const danceability = new Array(20).fill(0);
-  const energy = new Array(20).fill(0);
-  const instrumentalness = new Array(20).fill(0);
-  const liveness = new Array(20).fill(0);
-  const speechiness = new Array(20).fill(0);
-  const valence = new Array(20).fill(0);
+  const acousticness = new Array(21).fill(0);
+  const danceability = new Array(21).fill(0);
+  const energy = new Array(21).fill(0);
+  const instrumentalness = new Array(21).fill(0);
+  const liveness = new Array(21).fill(0);
+  const speechiness = new Array(21).fill(0);
+  const valence = new Array(21).fill(0);
 
 
   const labels = []
-  for (let i = 0; i < 100; i += 5){
+  for (let i = 0; i < 101; i += 5){
     labels.push(i / 100)
   }
 
@@ -44,7 +44,7 @@ const DynoGraph = () => {
     return Math.floor(ans * 100) / 100
   }
 
-  const popularity = new Array(20).fill(0);
+  const popularity = new Array(21).fill(0);
     features.forEach(datum => {
       if (!datum) return
       acousticness[zeroFive(datum.acousticness)]++;
@@ -79,10 +79,9 @@ const DynoGraph = () => {
       else button.className = button.value    
     });
   });
-
-
+  window.labels = labels
   const currentData = {
-      labels,
+      labels: [...labels.slice(0, 20), '>0.95'],
       datasets: [{
           data: dynoData[dyno],
           backgroundColor: '#1ED760',
