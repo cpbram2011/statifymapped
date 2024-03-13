@@ -50,8 +50,6 @@ router.get('/login', function (req, res) {
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
-    // your routerlocation requests authorization
-
     var scope = 'user-library-read user-read-private user-read-recently-played user-top-read playlist-read-collaborative playlist-read-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
@@ -65,8 +63,6 @@ router.get('/login', function (req, res) {
 });
 
 router.get('/callback', function (req, res) {
-    // your application requests refresh and access tokens
-    // after checking the state parameter
 
     var code = req.query.code || null;
     var state = req.query.state || null;
@@ -104,11 +100,10 @@ router.get('/callback', function (req, res) {
                     json: true
                 };
 
-                // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
 
-                });
-
+                }); 
+                
                 var res_uri;
                     if (process.env.NODE_ENV === 'production') {
                         res_uri = 'https://www.statifymapped.com/#/';
@@ -116,7 +111,6 @@ router.get('/callback', function (req, res) {
                     } else {
                         res_uri = 'http://localhost:3000/#/';
                     }
-                // we can also pass the token to the browser to make requests from there
                 res.redirect(res_uri +
                     querystring.stringify({
                         access_token: access_token,

@@ -58,8 +58,13 @@ h3 {
 
 }
 
+h4 {
+  margin: 10px;
+}
+
 h5 {
   margin: 10px;
+  
 }
 
 .bold {
@@ -168,7 +173,7 @@ h5 {
 
 
 .splash {
-
+  position: relative;
 }
 
 .splash-section-1 {
@@ -180,14 +185,19 @@ h5 {
 }
 
 .splash-section-1-text {
-  z-index: 8;
+  z-index: 1;
   padding: 20px 10vw;
-  background-color: rgba(18, 18, 18, 0.6);
+  max-width: 750px;
+  /* background-color: rgba(18, 18, 18, 0.6); */
   
 }
 
-.splash-section-1-text h2 {
-  /* max-width: 800px; */
+.splash-section-1-text h1, .splash-section-1-text h2 {
+  text-shadow:
+    3px 3px 5px #000,
+    -3px 3px 5px #000,
+    -3px -3px 5px #000,
+    3px -3px 5px #000;
 }
 
 .splash-img-container {
@@ -220,6 +230,24 @@ h5 {
   border-radius: 50px;
   background: linear-gradient(90deg, #2d5c91, #552f6d);
 }
+
+.splash-modal {
+  position: absolute;
+  background-color: rgba(16, 16, 16, 0.9);
+  border: 3px solid var(--mediumgrey);
+  min-height: 50vh;
+  z-index: 10;
+  top: 100px;
+  left: 10%;
+  right: 10%;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.splash-modal h5, .splash-modal h4 {
+  max-width: 900px;
+  margin: 10px auto;
+}
+
 
 
 
@@ -293,6 +321,11 @@ h5 {
 
 .link {
   cursor: pointer;
+}
+
+.splash-modal-container {
+  position: relative;
+  z-index: 10;
 }
 
 

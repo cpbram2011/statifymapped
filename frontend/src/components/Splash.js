@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import treble from './../assets/treble.png'
 import splashIcon1 from './../assets/splashicon1.png'
 import splashIcon2 from './../assets/splashicon2.png'
 import splashIcon3 from './../assets/splashicon3.png'
 import SpotifyLogo from '../assets/spotifylogo.js'
-
-
+import { MdCopyAll } from "react-icons/md";
 
 export const Footer = () => (
   <div className='splash-section-3'>
@@ -37,15 +36,16 @@ export const Footer = () => (
 
     <div className='splash-section-3-column'> 
       <h4>Contact</h4>
-      <h5 className='link' onClick={() => window.open("https://github.com/cpbram2011", '_blank').focus()}>Github</h5>
+      <h5 className='link' onClick={() => window.open("https://github.com/cpbram2011/statifymapped", '_blank').focus()}>Github</h5>
       <h5 className='link' onClick={() => window.open("https://www.linkedin.com/in/chris-bram/", '_blank').focus()}>LinkedIn</h5>
       <h5 className='link' onClick={() => window.open("https://cpbram2011.github.io/", '_blank').focus()}>Portfolio</h5>
     </div>
 
   </div>
 )
-const Splash = () => {
 
+const Splash = () => {
+  const [modal, setModal] = useState(false)
   const redirect_uri = 
     (process.env.NODE_ENV === 'production') ?
       // 'https://statifymapped-b581e01ec5ad.herokuapp.com/login'
@@ -63,13 +63,35 @@ const Splash = () => {
           <h2>Dive into the data behind your musical taste, gaining valuable insights that illuminate your listening habits</h2>
           <br/>
           <br/>
-          <p onClick={() => window.location.href=redirect_uri } className='login-link'> Login to Spotify </p>
+          <p onClick={() => setModal(true) } className='login-link'> Login to Spotify </p>
         </div>
 
       <div className='splash-img-container'>
         <img className='splash-img-1' src={treble} />
-
       </div>
+      {modal && 
+        <div className='splash-modal'>
+          <h4>Statify Mapped is currently in Limited Quota Mode</h4>
+          <h5>This platform is being reviewed for compliance with Spotify's Developer Policy.
+            While this review is pending, new users will only be granted access tokens if they are manually added to the API's whitelist.
+          </h5>
+          <div style={{marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <h5>Send an email to <a className='email' href='mailto:cpbram2011@gmail.com'>cpbram2011@gmail.com</a> to request access</h5>
+            <h4>or</h4>
+            <h5>use the following credentials to explore the app right away:</h5>
+          
+          <div style={{display: 'flex', gap: '5px', alignItems: 'center'}}>
+            <h5>email: </h5>
+            <h5 className='bold'> demo-user@mail.com <MdCopyAll style={{cursor: 'pointer'}} onClick={() => navigator.clipboard.writeText('demo-user@mail.com')}/></h5>
+          </div>
+          <div style={{display: 'flex', gap: '5px',  alignItems: 'center'}}>
+            <h5>password: </h5>
+            <h5 className='bold'> sfjlwruo2479 <MdCopyAll style={{cursor: 'pointer'}} onClick={() => navigator.clipboard.writeText('sfjlwruo2479')}/></h5>
+          </div>
+          <p onClick={() => window.location.href=redirect_uri } className='login-link'> I understand, take me to the login page</p>
+          </div>
+        </div>
+      }
 
 
       </div>
