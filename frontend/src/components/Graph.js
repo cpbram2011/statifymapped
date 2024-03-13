@@ -172,6 +172,7 @@ const Graph = () => {
         <p className="common-data">Most Common Key: {favKey.map((x, i) => i === favKey.length - 1 ? x : x + ' & ')}</p>
         
         <Doughnut
+        className='doughnut'
           data={keyData}
           options={keyOptions}
           height={400}

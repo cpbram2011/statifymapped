@@ -443,6 +443,10 @@ h5 {
   height: 40px;
 }
 
+.doughnut {
+  position: relative;
+  z-index: 2;
+}
 
 .keysig {
   margin: 0;
