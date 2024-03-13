@@ -163,7 +163,7 @@ const Graph = () => {
     
   return (
     <>
-      {loading && <Loading />}
+      {(loading || tracks.length < 1) && <Loading />}
     <div className='flex-container'>
       <div className="flex-item">
         <h2 className='keysig'>

@@ -19,7 +19,7 @@ const SingleTrack = ({datum}) => {
     }
     const keyArr = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B',];
     const modes = ['Maj', 'Min']
-    const albumArtUrl = datum.album.images[0].url
+    const albumArtUrl = datum.album.images[0]?.url
     
     const trackData = [
         datum.popularity / 10, 
@@ -86,7 +86,7 @@ const SingleTrack = ({datum}) => {
     return (
         <>
             <div className="track-details">
-                <img src={albumArtUrl} alt="album" className="track-details-img"/>
+                <img src={albumArtUrl} alt="" className="track-details-img"/>
                 <div className='track-details-text-container'>
                     <h2 className='track-details-title' onClick={() => openInNewTab(datum.external_urls.spotify)}>{datum.name}</h2>
                     <span className='track-details-album'> {datum.album.name} </span>

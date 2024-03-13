@@ -57,7 +57,7 @@ const Tracks = () => {
   const trackEles = []
   trackOrder.forEach((x, i)=> {
     const ele = tracks[x[0]];
-    if (!ele) return null
+    if (!ele || !ele.duration_ms) return null
     let minutes = Math.floor((ele.duration_ms / 1000) / 60).toString()
     let seconds = Math.floor((ele.duration_ms / 1000) % 60)
     seconds = (seconds < 10) ? `0${seconds.toString()}` : seconds.toString()
@@ -68,7 +68,7 @@ const Tracks = () => {
       >
       <div className="track-row">
         <div className="track-row-left">
-          <img className="album-art" src={ele.album.images[0].url} alt="album art"></img>
+          <img className="album-art" src={ele.album.images[0]?.url} alt=" "></img>
           <div className="song-info">
             <p className='song-title'>"{ele.name}"</p>
             <p className="song-artist">{ele.artists[0].name}</p>
@@ -82,7 +82,7 @@ const Tracks = () => {
     </li>)
   })
 
-  if (tracks.length < 1 || features.length < 1 || tracks.length !== features.length) return <>wut</>
+  if (tracks.length < 1 || features.length < 1 || tracks.length !== features.length) return <h1/>;
   return (
     <div className="flex-container tracks-container">
       

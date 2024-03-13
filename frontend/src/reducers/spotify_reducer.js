@@ -2,12 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import spotifyApi from "../util/spotifyApi";
 
 const initialState = {
-  target: 'top',
+  target: '',
   time_range: 'short_term',
+  validUser: true,
   features: [],
   tracks: [],
   playlists: [],
-  loading: false,
+  loading: true,
   error: {}
 }
 
@@ -27,15 +28,14 @@ export const fetchPlaylists = createAsyncThunk(
 export const setSelected = createAsyncThunk(
   'spotify/setSelected',
   async ({target, time_range = 'short_term'}, {dispatch}) => {
-
     dispatch(loading(true))
     try {
-        let data;
-        let trackIds;
+        let data, trackIds, invalidUser;
         if (target === 'recent') {
           const response = await spotifyApi.getMyRecentlyPlayedTracks({limit: 50})
           data = response.items.map(item => item.track)
           trackIds = data.map(item => item.id)
+          invalidUser = !data.length
         }  else if (target === 'top') {
           const response = await spotifyApi.getMyTopTracks({limit: 50, time_range})
           const response2 = await spotifyApi.getMyTopTracks({limit: 50, time_range, offset: 49})
@@ -51,7 +51,7 @@ export const setSelected = createAsyncThunk(
           data = response.items.map(item => item.track)
           trackIds = data.map(item => item.id)
         }
-
+        if (invalidUser) dispatch(invalidateUser())
         dispatch(receiveTracks({tracks: data, target, time_range}))
         dispatch(fetchFeatures(trackIds))
     } catch (error) {
@@ -89,6 +89,9 @@ const spotifySlice = createSlice({
     receiveFeatures: (state, {payload}) => {
       state.features = payload;
       state.loading = false
+    },
+    invalidateUser: (state) => {
+      state.validUser = false
     }
   },
   extraReducers: builder => {
@@ -107,5 +110,5 @@ const spotifySlice = createSlice({
   }
 })
 
-export const { loading, receiveTracks, receiveFeatures } = spotifySlice.actions
+export const { loading, receiveTracks, receiveFeatures, invalidateUser } = spotifySlice.actions
 export default spotifySlice.reducer

@@ -12,7 +12,7 @@ const Home = () => {
   
   useEffect(() => {
     dispatch(fetchPlaylists())
-    dispatch(setSelected({target: 'top'}))
+    dispatch(setSelected({target: 'recent'}))
   }, [])
 
 
