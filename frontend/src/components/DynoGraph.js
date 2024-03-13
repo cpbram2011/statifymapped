@@ -121,12 +121,12 @@ const DynoGraph = () => {
           <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
         </div>
         <div className='dyno-text'>
-          <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>
+          { width > 600 && <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>}
           <p className='descriptions'> {dynoDescriptions(dyno)}</p>
         </div>
       </div>
       <div className='flex-item-long'>
-        { width <= 425 && <p> {dyno.charAt(0).toUpperCase() + dyno.slice(1)} </p>}
+        { width <= 600 && <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>}
         <Bar 
         className='dyno-graph'
           data={currentData}

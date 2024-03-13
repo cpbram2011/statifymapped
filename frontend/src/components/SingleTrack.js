@@ -1,7 +1,10 @@
 import { Radar } from 'react-chartjs-2'
+import useWindowDimensions from './../util/useWindowDimensions'
 
 
 const SingleTrack = ({datum}) => {
+    const { height, width } = useWindowDimensions();
+
     if (!datum){
         return null
     }
@@ -86,7 +89,7 @@ const SingleTrack = ({datum}) => {
     return (
         <>
             <div className="track-details">
-                <img src={albumArtUrl} alt="" className="track-details-img"/>
+                { width > 600 &&  <img src={albumArtUrl} alt="" className="track-details-img"/> }
                 <div className='track-details-text-container'>
                     <h2 className='track-details-title' onClick={() => openInNewTab(datum.external_urls.spotify)}>{datum.name}</h2>
                     <span className='track-details-album'> {datum.album.name} </span>
