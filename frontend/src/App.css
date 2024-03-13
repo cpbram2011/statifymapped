@@ -16,7 +16,7 @@
   --violet: #8a2be2;
   --pink: #ff00ff;
   --spotifygreen: #1DB954;
-  --spotifydarkgreen: rgba(90, 221, 130, .4);
+  --spotifydarkgreen: rgba(90, 221, 130, .6);
   --spotifygreenalt: #3b9d5c;
 
 
@@ -26,10 +26,13 @@
 }
 
 body.light-mode {
-  --bg-color: #ffffff;
+  --bg-color: #f5f5f5;
   --text-color: #121212;
-  --darkgrey: #f1f1f1;
-  /* --spotifygreen: rgba(90, 221, 130, .4); */
+  --darkgrey: #ffffff;
+  
+  --mediumgrey: #999999;
+  --lightgrey: #dddddd;
+  
 
 }
 
@@ -139,6 +142,7 @@ h5 {
 .modal-container {
   position: absolute;
   top:0;
+  z-index: 8;
   width: 95vw;
   height: 100vh;
   display: flex;
@@ -149,7 +153,6 @@ h5 {
 
 
 .modal {
-  top: 30vh;
   width: min(600px, 80vw);
   border: 2px solid var(--mediumgrey);
   border-radius: 10px;
@@ -352,6 +355,19 @@ h5 {
   padding: 0 3px;
 }
 
+.invalid-user-p {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--spotifygreen)
+}
+
+.invalid-user-p span {
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
 
 /***** Graph.js ***********/
 
@@ -502,8 +518,11 @@ h5 {
 }
 
 .selected {
-  /* todo */
-  background: var(--spotifygreenalt) !important;     
+  background: var(--spotifygreen) !important;     
+}
+
+#dyno-select button:hover {
+  background: var(--spotifydarkgreen) !important;     
 }
 
 
@@ -582,9 +601,8 @@ h5 {
 }
 
 .selected-track {
-  background-color: var(--spotifygreen);
+  background-color: var(--spotifygreenalt);
 }
-
 
 .track-row {
   display: flex;
@@ -618,10 +636,9 @@ h5 {
 
 .song-artist{
   font-weight: 200;
-  margin: 0px;
-  margin-left: 5px;
+  margin: 2px 0px;
+  
   font-size: 0.85em;
-  color: rgb(152, 248, 152);
 }
 
 
@@ -637,7 +654,6 @@ h5 {
 
 .song-duration{
   margin: 0px;
-  color: white;
 }
 
 .track-details-container {

@@ -70,7 +70,7 @@ const Tracks = () => {
         <div className="track-row-left">
           <img className="album-art" src={ele.album.images[0]?.url} alt=" "></img>
           <div className="song-info">
-            <p className='song-title'>"{ele.name}"</p>
+            <p className='song-title'>{ele.name}</p>
             <p className="song-artist">{ele.artists[0].name}</p>
           </div>
         </div>

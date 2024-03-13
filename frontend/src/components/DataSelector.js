@@ -7,6 +7,7 @@ const DataSelector = () => {
   const [ target, setTarget] = useState('')
   const [ timeRange, setTimeRange ] = useState('short_term')
   const { playlists, validUser } = useSelector(state => state.spotify)
+  const [ aboutBetaModdal, setAboutBetaModal ] = useState(false)
 
   const handleChange = e => {
     if (e.time_range) dispatch(setSelected({target: e.target, time_range: e.time_range})) 
@@ -24,6 +25,7 @@ const DataSelector = () => {
   return (
     <>
     <div className='data-selector'>
+    <p> Based on </p>
       <select className='select' onChange={e => handleChange({ target: e.target.value})}>
         { validUser ? 
           <>
@@ -57,8 +59,35 @@ const DataSelector = () => {
             </select>
           </>
       }
-
     </div>
+      { !validUser && 
+        <p className='invalid-user-p'>
+          Statify Mapped's full feature set is currently only available to accounts flagged as beta testers.     
+          <span onClick={() => setAboutBetaModal(true)}>What's this mean?</span>
+        </p>
+      }
+      { aboutBetaModdal &&
+      <div className='modal-container' onClick={(e) => setAboutBetaModal(false)}>
+        <div className='modal' onClick={(e) => e.stopPropagation()}>
+          <div className='x' onClick={() => setAboutBetaModal(false)} >X</div>
+            <h4>Statify Mapped is currently in Limited Quota Mode</h4>
+            <h5>This platform is being reviewed for compliance with Spotify's Developer Policy.
+              While this review is pending, users that are not specifically whitelisted will only be able to pull data from a handful of publicly available collections.
+            </h5>
+            <h5>
+              Whitelisted accounts can access the full range music collections, including:
+            </h5>
+            <h5> - Liked Tracks</h5>
+            <h5> - Recently Played </h5>
+            <h5> - Top Tracks, filtered by time range </h5>
+            <h5> - All saved playlists, private and collaborative</h5>
+            <div style={{marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+              <h5>To request full access, send an email to <a className='email' href='mailto:cpbram2011@gmail.com'>cpbram2011@gmail.com</a></h5>
+            </div>
+        </div>
+
+      </div>
+      }
     </>
   )
 }
