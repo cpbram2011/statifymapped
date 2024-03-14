@@ -27,20 +27,20 @@ const SingleTrack = ({datum}) => {
     const trackData = [
         datum.popularity / 10, 
         datum.energy * 10, 
-        datum.danceability * 10, 
-        datum.valence * 10, 
         datum.liveness * 10, 
-        datum.instrumentalness * 10
+        datum.valence * 10, 
+        datum.instrumentalness * 10,
+        datum.danceability * 10, 
     ]
         
     const data = {
         labels: [
             'Popularity',  
             'Energy', 
-            'Danceability', 
-            'Valence', 
             'Liveness',
+            'Valence', 
             'Instrumentalness', 
+            'Danceability', 
         ],
         datasets: [
             {
@@ -57,7 +57,7 @@ const SingleTrack = ({datum}) => {
     const options = {
         scales: {
         r: {
-            ticks: { beginAtZero: true, stepSize: 1 },
+            ticks: { beginAtZero: true, display: false },
             pointLabels: { fontSize: 20, fontColor: 'white' },
             grid: {
                 color: 'rgba(125, 125, 125, .5)',
@@ -76,6 +76,14 @@ const SingleTrack = ({datum}) => {
         },
         title: {
             display: false
+        },
+        tooltip: {
+            callbacks: {
+                label: context => {
+                    console.log('context', context.parsed.r)
+                    return context.parsed.r.toFixed(1)
+                }
+            }
         }
     },
     responsive: true,
@@ -89,7 +97,12 @@ const SingleTrack = ({datum}) => {
     return (
         <>
             <div className="track-details">
-                { width > 600 &&  <img src={albumArtUrl} alt="" className="track-details-img"/> }
+
+                    { width > 600 &&  
+                    <div className='track-details-img-container'>
+                        <img src={albumArtUrl} alt="" className="track-details-img"/>
+                    </div>
+                    }
                 <div className='track-details-text-container'>
                     <h2 className='track-details-title' onClick={() => openInNewTab(datum.external_urls.spotify)}>{datum.name}</h2>
                     <span className='track-details-album'> {datum.album.name} </span>

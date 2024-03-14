@@ -120,10 +120,12 @@ const DynoGraph = () => {
           <button value='valence' onClick={() => setDyno('valence')}>Valence</button>
           <button value='popularity' onClick={() => setDyno('popularity')}>Popularity</button>
         </div>
-        <div className='dyno-text'>
-          { width > 600 && <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>}
-          <p className='descriptions'> {dynoDescriptions(dyno)}</p>
-        </div>
+          { width > 600 &&
+            <div className='dyno-text'>
+              <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>
+              <p className='descriptions'> {dynoDescriptions(dyno)}</p>
+            </div>
+          }
       </div>
       <div className='flex-item-long'>
         { width <= 600 && <p id="average">Average {dyno}: {avg(dynoData[dyno])}</p>}
