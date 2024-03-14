@@ -301,6 +301,9 @@ h5 {
   min-width: 300px;
   max-width: 900px;
 }
+.splash-section-3-column h3 {
+  color: #ffffff
+}
 
 .splash-section-3-column h4 {
   color: grey;
@@ -308,7 +311,7 @@ h5 {
 
 
 .splash-section-3-column h5 {
-
+  color: #ffffff;
 }
 
 .spotify-credit-container {
