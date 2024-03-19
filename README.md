@@ -2,6 +2,7 @@
 
 [Click here for live site](https://www.statifymapped.com/)
 
+![Statify Mapped](site-screenshot.png)
 
 ## Overview
 
