@@ -306,7 +306,7 @@ h5 {
 }
 
 .splash-section-3-column h4 {
-  color: grey;
+  color: var(--mediumgrey);
 }
 
 
