@@ -17,15 +17,17 @@ export const setTokens = createAsyncThunk(
           window.location.href=`/#/access_token=${res.data.access_token}&refresh_token=${res.data.refresh_token}`
           window.location.reload()
         })
-      } else throw error;
+      } else {
+      // console.log('setTokens err' , error)
+    }
     }
 
 
     return {
       access_token, 
       refresh_token,
-      username: response.display_name,
-      profpic: response.images[0] ? response.images[0].url : null
+      username: response?.display_name || 'User',
+      profpic: response?.images[0] ? response.images[0].url : null
     }
   })
 

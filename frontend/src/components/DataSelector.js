@@ -18,7 +18,7 @@ const DataSelector = () => {
 
   useEffect(() => {
     if (!validUser) {
-      handleChange({target: '37i9dQZF1DXcBWIGoYBM5M'})
+      handleChange({target: '37i9dQZEVXbLiRSasKsNU9'})
     }
   }, [validUser])
   
@@ -39,7 +39,6 @@ const DataSelector = () => {
           </>
           : 
           <>
-            <option style={{height: '100px'}} value='37i9dQZF1DXcBWIGoYBM5M'> Today's Top Hits</option>
             <option value='37i9dQZEVXbLiRSasKsNU9'> Viral 50 - Global</option>
             <option value='6UeSakyzhiEt4NB3UAd6NQ'> Billboard Hot 100</option>
             <option value='37i9dQZF1DX0kbJZpiYdZl'> Hot Hits USA</option>

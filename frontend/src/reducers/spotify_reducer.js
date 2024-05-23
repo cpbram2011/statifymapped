@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import spotifyApi from "../util/spotifyApi";
+import billboard from '../util/BillboardHot100'
+import viral50 from '../util/Viral50Global'
+import hotHits from '../util/HotHitsUSA'
 
 const initialState = {
   target: '',
@@ -29,13 +32,12 @@ export const setSelected = createAsyncThunk(
   'spotify/setSelected',
   async ({target, time_range = 'short_term'}, {dispatch}) => {
     dispatch(loading(true))
+    let data, trackIds;
     try {
-        let data, trackIds, invalidUser;
         if (target === 'recent') {
           const response = await spotifyApi.getMyRecentlyPlayedTracks({limit: 50})
           data = response.items.map(item => item.track)
           trackIds = data.map(item => item.id)
-          invalidUser = !data.length
         }  else if (target === 'top') {
           const response = await spotifyApi.getMyTopTracks({limit: 50, time_range})
           const response2 = await spotifyApi.getMyTopTracks({limit: 50, time_range, offset: 49})
@@ -48,15 +50,51 @@ export const setSelected = createAsyncThunk(
           trackIds = data.map(item => item.id)
         } else {
           const response = await spotifyApi.getPlaylistTracks(target)
+          // const newdata = response.items.map(({track}) => {
+          //   return {
+          //     id: track.id,
+          //     name: track.name,
+          //     popularity: track.popularity,
+          //     artists: track.artists,
+          //     duration_ms: track.duration_ms,
+          //     album: {
+          //       name: track.album.name,
+          //       images: [track.album.images[0]],
+          //       release_date: track.album.release_date
+          //     }
+          //   }
+          // })
+          // data = newdata
           data = response.items.map(item => item.track)
           trackIds = data.map(item => item.id)
         }
-        if (invalidUser) dispatch(invalidateUser())
         dispatch(receiveTracks({tracks: data, target, time_range}))
         dispatch(fetchFeatures(trackIds))
     } catch (error) {
-      console.log('error', error)
-      throw error
+      let features = []
+      dispatch(invalidateUser())
+      if ( target === '37i9dQZEVXbLiRSasKsNU9') {
+        data = viral50.tracks
+        features = viral50.features
+        trackIds = data.map(item => item.id)
+      } 
+      else if ( target === '6UeSakyzhiEt4NB3UAd6NQ') {
+        data = billboard.tracks
+        features = billboard.features
+        trackIds = data.map(item => item.id)
+      } 
+      else if ( target === '37i9dQZF1DX0kbJZpiYdZl') {
+        data = hotHits.tracks
+        features = hotHits.features
+        trackIds = data.map(item => item.id)
+      } 
+      else {
+        console.log('no data')
+        data = []
+        trackIds = []
+      }
+      dispatch(receiveTracks({tracks: data, target, time_range}))
+      dispatch(receiveFeatures(features))
     }
   }
 )
@@ -68,7 +106,7 @@ const fetchFeatures = createAsyncThunk(
       const response = await spotifyApi.getAudioFeaturesForTracks(trackIds)
       dispatch(receiveFeatures(response.audio_features))
     } catch (error) {
-      throw error
+      // console.log('fetchFeatures err', error)
     }
   }
 )
