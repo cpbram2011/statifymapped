@@ -89,7 +89,6 @@ export const setSelected = createAsyncThunk(
         trackIds = data.map(item => item.id)
       } 
       else {
-        console.log('no data')
         data = []
         trackIds = []
       }
